@@ -1,0 +1,62 @@
+:root {
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-strong: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --focus: rgba(124, 58, 237, 0.55);
+
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f7ff;
+    --panel: rgba(0, 0, 0, 0.04);
+    --panel-strong: rgba(0, 0, 0, 0.06);
+    --border: rgba(0, 0, 0, 0.12);
+    --text: rgba(0, 0, 0, 0.9);
+    --muted: rgba(0, 0, 0, 0.6);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    color-scheme: light;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(124, 58, 237, 0.25), transparent 55%),
+    radial-gradient(900px 500px at 90% 20%, rgba(37, 99, 235, 0.18), transparent 60%),
+    var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}

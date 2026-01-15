@@ -1,0 +1,288 @@
+.appShell {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 18px;
+  padding: 18px;
+}
+
+.sidebar {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 4px 10px;
+}
+
+.sidebarTitle {
+  font-weight: 750;
+  letter-spacing: 0.2px;
+}
+
+.createCard {
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.label.compact {
+  gap: 6px;
+}
+
+.input {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 12px;
+  color: var(--text);
+}
+
+@media (prefers-color-scheme: light) {
+  .input {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.color {
+  width: 64px;
+  height: 42px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+}
+
+.primary {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.92), rgba(37, 99, 235, 0.92));
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ghost,
+.ghostDanger {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--text);
+  min-height: 42px;
+}
+
+.ghostDanger {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(220, 38, 38, 0.5);
+}
+
+@media (prefers-color-scheme: light) {
+  .ghostDanger {
+    color: rgba(220, 38, 38, 0.9);
+  }
+}
+
+.sidebarList {
+  margin-top: 12px;
+  overflow: auto;
+  display: grid;
+  gap: 10px;
+  padding: 2px;
+}
+
+.listRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.listRow.selected {
+  border-color: rgba(124, 58, 237, 0.55);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+.listRowMain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  min-height: 56px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+}
+
+.dot.big {
+  width: 16px;
+  height: 16px;
+}
+
+.listRowText {
+  display: grid;
+  gap: 2px;
+}
+
+.listRowName {
+  font-weight: 750;
+}
+
+.listRowMeta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 10px 6px;
+}
+
+.mainPanel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.emptyState {
+  padding: 20px;
+}
+
+.checklistView {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 14px;
+  padding: 16px;
+}
+
+.checklistHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+
+.checklistHeaderTitle {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.h1 {
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.addItemCard {
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.items {
+  overflow: auto;
+  display: grid;
+  gap: 10px;
+  padding-bottom: 2px;
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 10px;
+}
+
+.itemMain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.itemMain input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+.itemText {
+  color: var(--text);
+}
+
+.itemRow.done .itemText {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+@media (max-width: 900px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+}
