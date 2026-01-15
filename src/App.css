@@ -222,6 +222,24 @@
   align-items: center;
 }
 
+.checklistHeaderActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: end;
+}
+
+.small {
+  padding: 10px 12px;
+  min-height: 42px;
+}
+
+.nameInput {
+  padding: 10px 12px;
+  min-height: 42px;
+  width: min(520px, 65vw);
+}
+
 .h1 {
   font-size: 20px;
   font-weight: 850;

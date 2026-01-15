@@ -50,6 +50,13 @@ function App() {
     setChecklists((prev) => prev.filter((c) => c.id !== id))
   }
 
+  function renameChecklist(checklistId: string, name: string) {
+    const trimmed = name.trim()
+    if (!trimmed) return
+
+    setChecklists((prev) => prev.map((c) => (c.id === checklistId ? { ...c, name: trimmed } : c)))
+  }
+
   function addItem(checklistId: string, text: string) {
     const trimmed = text.trim()
     if (!trimmed) return
@@ -101,6 +108,7 @@ function App() {
         {selectedChecklist ? (
           <ChecklistView
             checklist={selectedChecklist}
+            onRenameChecklist={(name) => renameChecklist(selectedChecklist.id, name)}
             onAddItem={(text) => addItem(selectedChecklist.id, text)}
             onToggleItem={(itemId) => toggleItem(selectedChecklist.id, itemId)}
             onDeleteItem={(itemId) => deleteItem(selectedChecklist.id, itemId)}
