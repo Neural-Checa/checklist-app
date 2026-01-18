@@ -290,6 +290,19 @@
   height: 20px;
 }
 
+.itemActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: end;
+}
+
+.itemInput {
+  padding: 10px 12px;
+  min-height: 42px;
+  width: min(620px, 58vw);
+}
+
 .itemText {
   color: var(--text);
 }

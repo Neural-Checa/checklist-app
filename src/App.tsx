@@ -94,6 +94,21 @@ function App() {
     )
   }
 
+  function renameItem(checklistId: string, itemId: string, text: string) {
+    const trimmed = text.trim()
+    if (!trimmed) return
+
+    setChecklists((prev) =>
+      prev.map((c) => {
+        if (c.id !== checklistId) return c
+        return {
+          ...c,
+          items: c.items.map((it) => (it.id === itemId ? { ...it, text: trimmed } : it)),
+        }
+      }),
+    )
+  }
+
   return (
     <div className="appShell">
       <Sidebar
@@ -111,6 +126,7 @@ function App() {
             onRenameChecklist={(name) => renameChecklist(selectedChecklist.id, name)}
             onAddItem={(text) => addItem(selectedChecklist.id, text)}
             onToggleItem={(itemId) => toggleItem(selectedChecklist.id, itemId)}
+            onRenameItem={(itemId, text) => renameItem(selectedChecklist.id, itemId, text)}
             onDeleteItem={(itemId) => deleteItem(selectedChecklist.id, itemId)}
           />
         ) : (

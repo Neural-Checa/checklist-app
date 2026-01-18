@@ -6,15 +6,20 @@ export function ChecklistView(props: {
   onRenameChecklist: (name: string) => void
   onAddItem: (text: string) => void
   onToggleItem: (itemId: string) => void
+  onRenameItem: (itemId: string, text: string) => void
   onDeleteItem: (itemId: string) => void
 }) {
   const [text, setText] = useState('')
   const [isEditingName, setIsEditingName] = useState(false)
   const [draftName, setDraftName] = useState(props.checklist.name)
+  const [editingItemId, setEditingItemId] = useState<string | null>(null)
+  const [draftItemText, setDraftItemText] = useState('')
 
   useEffect(() => {
     setIsEditingName(false)
     setDraftName(props.checklist.name)
+    setEditingItemId(null)
+    setDraftItemText('')
   }, [props.checklist.id, props.checklist.name])
 
   const stats = useMemo(() => {
@@ -130,19 +135,82 @@ export function ChecklistView(props: {
                   onChange={() => props.onToggleItem(it.id)}
                   aria-label={it.done ? 'Marcar como pendiente' : 'Marcar como cumplido'}
                 />
-                <span className="itemText">{it.text}</span>
+                {editingItemId === it.id ? (
+                  <input
+                    className="input itemInput"
+                    value={draftItemText}
+                    onChange={(e) => setDraftItemText(e.target.value)}
+                    maxLength={140}
+                    aria-label="Editar check"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        props.onRenameItem(it.id, draftItemText)
+                        setEditingItemId(null)
+                        setDraftItemText('')
+                      }
+                      if (e.key === 'Escape') {
+                        setEditingItemId(null)
+                        setDraftItemText('')
+                      }
+                    }}
+                    autoFocus
+                  />
+                ) : (
+                  <span className="itemText">{it.text}</span>
+                )}
               </label>
 
-              <button
-                className="ghost"
-                title="Eliminar check"
-                onClick={() => {
-                  const ok = confirm('¿Eliminar este check?')
-                  if (ok) props.onDeleteItem(it.id)
-                }}
-              >
-                Borrar
-              </button>
+              <div className="itemActions">
+                {editingItemId === it.id ? (
+                  <>
+                    <button
+                      className="primary small"
+                      onClick={() => {
+                        props.onRenameItem(it.id, draftItemText)
+                        setEditingItemId(null)
+                        setDraftItemText('')
+                      }}
+                      disabled={!draftItemText.trim()}
+                      title="Guardar"
+                    >
+                      Guardar
+                    </button>
+                    <button
+                      className="ghost small"
+                      onClick={() => {
+                        setEditingItemId(null)
+                        setDraftItemText('')
+                      }}
+                      title="Cancelar"
+                    >
+                      Cancelar
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="ghost small"
+                      title="Editar check"
+                      onClick={() => {
+                        setEditingItemId(it.id)
+                        setDraftItemText(it.text)
+                      }}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="ghost small"
+                      title="Eliminar check"
+                      onClick={() => {
+                        const ok = confirm('¿Eliminar este check?')
+                        if (ok) props.onDeleteItem(it.id)
+                      }}
+                    >
+                      Borrar
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           ))
         )}
