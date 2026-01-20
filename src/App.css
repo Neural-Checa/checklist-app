@@ -30,6 +30,20 @@
 .sidebarTitle {
   font-weight: 750;
   letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kpiPill {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.45);
+  background: rgba(124, 58, 237, 0.16);
+  color: var(--text);
+  line-height: 1;
 }
 
 .createCard {

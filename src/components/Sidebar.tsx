@@ -19,6 +19,17 @@ export function Sidebar(props: {
     return `Mis checklists (${props.checklists.length})`
   }, [props.checklists.length])
 
+  const globalKpi = useMemo(() => {
+    let done = 0
+    let total = 0
+    for (const checklist of props.checklists) {
+      total += checklist.items.length
+      done += checklist.items.reduce((acc, it) => acc + (it.done ? 1 : 0), 0)
+    }
+    const percent = total === 0 ? 0 : Math.round((done / total) * 100)
+    return { done, total, percent }
+  }, [props.checklists])
+
   function submit() {
     props.onCreateChecklist(name, color)
     setName('')
@@ -27,7 +38,12 @@ export function Sidebar(props: {
   return (
     <aside className="sidebar">
       <div className="sidebarHeader">
-        <div className="sidebarTitle">{title}</div>
+        <div className="sidebarTitle">
+          {title}
+          <span className="kpiPill" title={`${globalKpi.done}/${globalKpi.total} completadas`}>
+            {globalKpi.percent}%
+          </span>
+        </div>
       </div>
 
       <div className="createCard">
